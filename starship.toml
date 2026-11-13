@@ -1,0 +1,175 @@
+# ╭──────────────────────────────────────────────────────────────╮
+# │  Starship · Nord Bright                                         │
+# │  Конфиг: ~/.config/starship.toml                                │
+# ╰──────────────────────────────────────────────────────────────╯
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 1000
+palette = 'nord'
+
+# ── Каркас промпта ───────────────────────────────────────────────
+format = """
+[╭─](bold teal)\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$golang\
+$bun\
+$deno\
+$docker_context\
+$fill\
+$status\
+$cmd_duration\
+$time
+[╰─](bold teal)$character
+"""
+
+# ── Пользователь и хост (только когда нужно) ─────────────────────
+[username]
+style_user = 'bold fg:bg bg:teal'
+style_root = 'bold fg:text_hi bg:red'
+format = '[ $user ]($style)'
+show_always = false
+
+[hostname]
+ssh_only = true
+format = '[ @$hostname ](bold blue)'
+
+# ── Директория: контрастная плашка ───────────────────────────────
+[directory]
+style = 'bold fg:bg bg:frost'
+read_only_style = 'bold fg:text_hi bg:red'
+format = '[ $path ]($style)[$read_only]($read_only_style)'
+truncation_length = 4
+truncation_symbol = '…/'
+truncate_to_repo = true
+
+# ── Git ──────────────────────────────────────────────────────────
+[git_branch]
+symbol = '󰊢 '
+style = 'bold yellow'
+format = '[ $symbol$branch ]($style)'
+
+[git_status]
+style = 'bold orange'
+format = '[ $all_status$ahead_behind ]($style)'
+conflicted = '󰅖'
+ahead = '󰁔'
+behind = '󰁍'
+diverged = '󰂺'
+untracked = '?'
+stashed = '$'
+modified = '!'
+staged = '+'
+renamed = '»'
+deleted = '✘'
+
+# ── Языки и окружения ────────────────────────────────────────────
+[python]
+symbol = ' '
+style = 'bold purple'
+format = '[ $symbol$version ]($style)'
+
+[nodejs]
+symbol = '󰎙 '
+style = 'bold green'
+format = '[ $symbol$version ]($style)'
+
+[rust]
+symbol = '󱘗 '
+style = 'bold orange'
+format = '[ $symbol$version ]($style)'
+
+[golang]
+symbol = '󰟓 '
+style = 'bold frost'
+format = '[ $symbol$version ]($style)'
+
+[bun]
+symbol = '󰳓 '
+style = 'bold text'
+format = '[ $symbol$version ]($style)'
+
+[deno]
+symbol = '󰎙 '
+style = 'bold text_hi'
+format = '[ $symbol$version ]($style)'
+
+[docker_context]
+symbol = '󰡨 '
+style = 'bold blue'
+format = '[ $symbol$context ]($style)'
+
+# ── Статус, время команд, часы ───────────────────────────────────
+[status]
+style = 'bold red'
+format = '[󰅚 $status ]($style)'
+disabled = false
+
+[cmd_duration]
+min_time = 2000
+style = 'bold yellow'
+format = '[󱎫 $duration ]($style)'
+
+[time]
+disabled = false
+format = '[ $time ]($style)'
+style = 'bold text'
+time_format = '%H:%M'
+
+# ── Заполнитель между левой и правой частью ─────────────────────
+[fill]
+symbol = '·'
+style = 'bold muted'
+
+# ── Символ ввода ─────────────────────────────────────────────────
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold green)'
+vimcmd_replace_one_symbol = '[❮](bold purple)'
+vimcmd_replace_symbol = '[❮](bold purple)'
+vimcmd_visual_symbol = '[❮](bold yellow)'
+
+# ── Лишнее отключаем ─────────────────────────────────────────────
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[azure]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[container]
+disabled = true
+
+[battery]
+disabled = true
+
+# ── Палитра: яркий Nord, читаемый на полупрозрачном фоне ─────────
+[palettes.nord]
+bg      = '#2e3440'
+bg_alt  = '#3b4252'
+bg_deep = '#434c5e'
+muted   = '#96a3ba'
+text    = '#e5e9f0'
+text_hi = '#ffffff'
+teal    = '#9fe8de'
+frost   = '#8be9f7'
+blue    = '#a3c4f3'
+red     = '#f28f9a'
+orange  = '#f5a97f'
+yellow  = '#f9e08c'
+green   = '#b9e88f'
+purple  = '#d9a8ef'
